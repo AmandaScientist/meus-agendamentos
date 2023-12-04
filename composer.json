@@ -1,0 +1,16 @@
+{
+    "name": "amand/meus-agendamentos",
+    "autoload": {
+        "psr-4": {
+            "Amand\\MeusAgendamentos\\": "src/",
+            "app\\":"app/"
+        }
+    },
+    "authors": [
+        {
+            "name": "AmandaSFarias",
+            "email": "amandasfarias15@gmail.com"
+        }
+    ],
+    "require": {}
+}

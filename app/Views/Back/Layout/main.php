@@ -9,10 +9,11 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Agendamentos SRH| Admin | <?php echo $this->renderSection('title'); ?></title>
+    <title>Agendamento Online| Admin | <?php echo $this->renderSection('title'); ?></title>
 
     <!-- Custom fonts for this template-->
     <link href="<?php echo base_url('back/'); ?>vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
     <!-- Custom styles for this template-->
@@ -35,9 +36,9 @@
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="<?php echo route_to('super.home'); ?>">
                 <div class="sidebar-brand-icon rotate-n-15">
-                    <i class="fas fa-laugh-wink"></i>
+                    <i class="fas fa-calendar-check"></i>
                 </div>
-                <div class="sidebar-brand-text mx-3">SB Admin <sup>2</sup></div>
+                <div class="sidebar-brand-text mx-3">Agendamento Online <sup></sup></div>
             </a>
 
             <!-- Divider -->
@@ -46,8 +47,8 @@
             <!-- Nav Item - Dashboard -->
             <li class="nav-item">
                 <a class="nav-link" href="<?php echo route_to('super.home'); ?>">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Dashboard</span></a>
+                    <i class="fas fa-fw fa-home"></i>
+                    <span>Menu Principal</span></a>
             </li>
 
             <!-- Divider -->
@@ -57,7 +58,7 @@
             <li class="nav-item">
                 <a class="nav-link" href="<?php echo route_to('units'); ?>">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Unidades</span></a>
+                    <span>Recursos de Apoio</span></a>
             </li>
 
             <!-- Divider -->
@@ -66,8 +67,9 @@
             <!-- Nav Item - Dashboard -->
             <li class="nav-item">
                 <a class="nav-link" href="<?php echo route_to('services'); ?>">
-                    <i class="fas fa-fw fa-cogs"></i>
-                    <span>Serviços</span></a>
+                    <!--i class="fas fa-fw fa-cogs"></i-->
+                    <i class="fas fa-chart-bar"></i>
+                    <span>Salas de Reuniões</span></a>
             </li>
 
             <!-- Divider -->
@@ -76,7 +78,7 @@
             <!-- Nav Item - Dashboard -->
             <li class="nav-item">
                 <a class="nav-link" href="<?php echo route_to('home'); ?>">
-                    <i class="fas fa-fw fa-home"></i>
+                    <i class="fas fa-calendar"></i>
                     <span>Agendamentos</span></a>
             </li>
 
@@ -177,7 +179,7 @@
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; SisReserva - COTIC / SRH 2023</span>
+                        <span>Copyright &copy; Agendamento Online - COTIC / SRH 2024</span>
                     </div>
                 </div>
             </footer>
@@ -199,12 +201,12 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Deseja realmente Sair?</h5>
                     <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
-                <div class="modal-body">Deseja realmente Sair?</div>
+                <!--div class="modal-body">Deseja realmente Sair?</div-->
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
                     <a class="btn btn-primary" href="<?php echo route_to('logout'); ?>">Sair</a>

@@ -36,7 +36,8 @@ class UnitService extends MyBaseService
             return self::TEXT_FOR_NO_DATA;
         }
 
-        $this->htmlTable->setHeading('Ações', 'Nome', 'E-mail', 'Telefone', 'Serviços', 'Situação', 'Criado');
+        //$this->htmlTable->setHeading('Ações', 'Nome', 'E-mail', 'Telefone', 'Serviços', 'Situação', 'Criado');
+        $this->htmlTable->setHeading('Ações', 'Nome do Recurso', 'E-mail', 'Telefone', 'Sala de Reunião', 'Situação', 'Criado');
 
         $unitServiceService = Factories::class(UnitServiceService::class);
 
@@ -112,10 +113,9 @@ class UnitService extends MyBaseService
         }
 
 
-        // retorno a lista HTML 
+        // retorno a lista HTML (registros no BD)
         return ul($list);
     }
-
 
     /**
      * Renderiza os dropdown com as ações possíveis para cada registro
@@ -126,6 +126,7 @@ class UnitService extends MyBaseService
     private function renderBtnActions(Unit $unit): string
     {
 
+
         $btnActions = '<div class="btn-group">';
         $btnActions .= '<button type="button" 
                             class="btn btn-outline-primary btn-sm dropdown-toggle" 
@@ -133,29 +134,45 @@ class UnitService extends MyBaseService
                             aria-haspopup="true" 
                             aria-expanded="false">Ações
                         </button>';
+
+
         $btnActions .= '<div class="dropdown-menu">';
+
         $btnActions .= anchor(route_to('units.edit', $unit->id), 'Editar', ['class' => 'dropdown-item']);
+
         $btnActions .= anchor(route_to('units.services', $unit->id), 'Serviços', ['class' => 'dropdown-item']);
+
         $btnActions .= anchor(route_to('units.schedules', $unit->id), 'Agendamentos', ['class' => 'dropdown-item']);
         $btnActions .= view_cell(
+
             library: 'ButtonsCell::action',
+
             params: [
-                'route'       => route_to('units.action', $unit->id),
+
+                'route' => route_to('units.action', $unit->id),
+
                 'text_action' => $unit->textToAction(),
+
                 'activated'   => $unit->isActivated(),
+
                 'btn_class'   => 'dropdown-item py-2' //py-2 o espaço
             ]
         );
+
         $btnActions .= view_cell(
+
             library: 'ButtonsCell::destroy',
+
             params: [
-                'route'       => route_to('units.destroy', $unit->id),
-                'btn_class'   => 'dropdown-item py-2'
+
+                'route'  => route_to('units.destroy', $unit->id),
+
+                'btn_class'   => 'dropdown-item py-2' //py-2 o espaço
             ]
         );
 
         $btnActions .= ' </div>
-                        </div>';
+</div>';
 
         return $btnActions;
     }

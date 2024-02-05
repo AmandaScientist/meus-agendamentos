@@ -99,7 +99,7 @@
                     return;
                 }
 
-                const result = confirm('Tem certeza do cancelamento? \n Essa ação não poderá ser desfeita.');
+                const result = confirm('Tem certeza do cancelamento?');
 
 
                 if (!result) {
@@ -120,8 +120,6 @@
         });
 
     };
-
-
 
     // cancela o agendamento
     const tryCancelUserSchedule = async (schedule) => {
@@ -160,9 +158,10 @@
 
         // tudo certo...
         boxSuccess.innerHTML = `<div class="alert alert-success alert-dismissible fade show" role="alert">
-                                    Agendameto cancelado.
+                                    Agendamento cancelado.
                                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                                 </div>`;
+
 
 
         // recuperamos novamente os agendamentos
@@ -176,7 +175,6 @@
         getUserSchedules();
     });
 </script>
-
 
 
 <?php echo $this->endSection(); ?>

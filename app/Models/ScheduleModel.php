@@ -21,6 +21,8 @@ class ScheduleModel extends MyBaseModel
         'finished',
         'canceled',
         'chosen_date',
+        'start_time',
+        'end_time',
     ];
 
     // Dates
@@ -30,10 +32,11 @@ class ScheduleModel extends MyBaseModel
     protected $updatedField  = 'updated_at';
 
 
+
     // Validation
     protected $validationRules      = []; // temos uma classe específica de validação
 
-
+    //Validation
     protected $validationMessages   = [];
 
     protected $skipValidation       = false;
@@ -79,7 +82,7 @@ class ScheduleModel extends MyBaseModel
      * @param string $chosenDate
      * @return boolean
      */
-    public function chosenDateIsFree(int|string $unitId, string $chosenDate): bool
+    public function chosenDateIsFree(int|string $unitId, string $chosenDate): bool //espera um retorno lógico true or false
     {
 
         return $this->where('unit_id', $unitId)->where('chosen_date', $chosenDate)->first() === null;
@@ -149,7 +152,7 @@ class ScheduleModel extends MyBaseModel
 
         $this->select([
             'schedules.*',
-            'DATE_FORMAT(schedules.chosen_date, "%d/%m/%Y às %H:%i") AS formated_chosen_date', 
+            'DATE_FORMAT(schedules.chosen_date, "%d/%m/%Y às %H:%i") AS formated_chosen_date',
             'units.name AS unit',
             'units.address',
             'services.name AS service',
@@ -164,7 +167,6 @@ class ScheduleModel extends MyBaseModel
     }
 
 
-
     /**
      * Recupera os agendamentos da unidade
      *
@@ -176,7 +178,7 @@ class ScheduleModel extends MyBaseModel
 
         $this->select([
             'schedules.*',
-            'DATE_FORMAT(schedules.chosen_date, "%d/%m/%Y às %H:%i") AS formated_chosen_date', 
+            'DATE_FORMAT(schedules.chosen_date, "%d/%m/%Y às %H:%i") AS formated_chosen_date',
             'units.name AS unit',
             'units.address',
             'services.name AS service',

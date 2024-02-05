@@ -1,7 +1,7 @@
 <div class="row">
 
     <div class="form-group col-md-12">
-        <label for="name">Nome</label>
+        <label for="name">Nome da Sala</label>
         <input type="text" class="form-control" name="name" value="<?php echo old('name', $service->name); ?>" id="name" aria-describedby="nameHelp" placeholder="Nome">
         <?php echo show_error_input('name'); ?>
     </div>

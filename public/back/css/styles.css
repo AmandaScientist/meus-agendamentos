@@ -1,0 +1,10 @@
+/* public/css/styles.css */
+
+body {
+    background-image: url('back/img/calendar-8476416_1280.png'); /* Substitua pelo caminho real da sua imagem */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    color: #fff; /* Cor do texto, ajuste conforme necessário para garantir legibilidade */
+}
+

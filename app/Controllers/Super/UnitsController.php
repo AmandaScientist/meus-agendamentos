@@ -34,7 +34,7 @@ class UnitsController extends BaseController
     public function index()
     {
         $data = [
-            'title' => 'Unidades',
+            'title' => 'Recursos de Apoio',
             'units' => $this->unitService->renderUnits()
         ];
 
@@ -50,7 +50,7 @@ class UnitsController extends BaseController
     public function new()
     {
         $data = [
-            'title'         => 'Criar unidade',
+            'title'         => 'Criar recurso',
             'unit'          => new Unit(),
             'timesInterval' => $this->unitService->renderTimesInterval()
         ];
@@ -92,7 +92,7 @@ class UnitsController extends BaseController
     {
 
         $data = [
-            'title'         => 'Editar unidade',
+            'title'         => 'Editar recurso',
             'unit'          => $unit = $this->unitModel->findOrFail($id),
             'timesInterval' => $this->unitService->renderTimesInterval($unit->servicetime)
         ];
@@ -175,7 +175,7 @@ class UnitsController extends BaseController
 
 
     /**
-     * Renderiza a view para gerir os agendamentos da unidade
+     * Renderiza a view para gerir os agendamentos do Recurso
      *
      * @param integer $id
      * @return RendererInterface
@@ -184,7 +184,7 @@ class UnitsController extends BaseController
     {
 
         $data = [
-            'title'     => 'Gerenciar os agendamentos da unidade',
+            'title'     => 'Gerenciar os recursos de apoio',
             'unit'      => $unit = $this->unitModel->findOrFail($id),
             'schedules' => $this->unitService->renderUnitSchedules($unit->id)
         ];

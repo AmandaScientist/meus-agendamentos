@@ -36,7 +36,7 @@ class UnitsServicesController extends BaseController
     {
 
         $data = [
-            'title'           => 'Gerenciar serviços da unidade',
+            'title'           => 'Gerenciar serviços do recurso de apoio:',
             'unit'            => $unit = $this->unitModel->findOrFail($unitId),
             'servicesOptions' => $this->unitServiceService->renderServicesOptions($unit->services),
         ];

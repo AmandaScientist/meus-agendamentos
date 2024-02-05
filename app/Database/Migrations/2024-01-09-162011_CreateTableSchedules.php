@@ -77,7 +77,7 @@ class CreateTableSchedules extends Migration
             ],
         ]);
 
-
+        //chave primária e chave estrangeira
         $this->forge->addKey('id', true);
         $this->forge->addForeignKey('unit_id', 'units', 'id', 'CASCADE', 'CASCADE');
         $this->forge->addForeignKey('service_id', 'services', 'id', 'CASCADE', 'CASCADE');

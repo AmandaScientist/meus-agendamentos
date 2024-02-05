@@ -43,7 +43,7 @@ class Filters extends BaseConfig
             'csrf',
             // 'invalidchars',
             'session' => ['except' => ['login*', 'register', 'auth/a/*', '/']], // para a raiz do site não é necessário estar logado
-            'force-reset' => ['except' => ['login*', 'register', 'auth/a/*', 'change-password', 'logout']]
+            'force-reset' => ['except' => ['login*', 'register', 'auth/a/*', 'change-password', 'logout']] //força o login
         ],
         'after' => [
             'toolbar',

@@ -12,5 +12,7 @@
             "email": "amandasfarias15@gmail.com"
         }
     ],
-    "require": {}
+    "require": {
+        "codeigniter4/shield": "dev-develop"
+    }
 }

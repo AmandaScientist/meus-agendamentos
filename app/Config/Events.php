@@ -56,7 +56,7 @@ Events::on('pre_system', static function () {
  */
 Events::on('schedule_created', static function (string $email, Schedule $schedule) {
 
-    (new NewScheduleNotification(email, $email, schedule, $schedule))->send();
+    (new NewScheduleNotification(email: $email, schedule: $schedule))->send();
 });
 
 
@@ -67,5 +67,5 @@ Events::on('schedule_created', static function (string $email, Schedule $schedul
  */
 Events::on('schedule_canceled', static function (string $email, Schedule $schedule) {
 
-    (new CanceledScheduleNotification(email, $email, schedule, $schedule))->send();
+    (new CanceledScheduleNotification(email: $email, schedule: $schedule))->send();
 });

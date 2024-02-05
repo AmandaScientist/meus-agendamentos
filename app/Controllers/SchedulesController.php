@@ -28,11 +28,12 @@ class SchedulesController extends BaseController
     }
 
 
+
     public function index()
     {
 
         $data = [
-            'title'  => 'Criar agendamento',
+            'title'  => 'Criar agendamento:',
             'units'  => $this->scheduleService->renderUnits(),
             'months' => $this->calendarService->renderMonths(),
         ];
@@ -56,7 +57,7 @@ class SchedulesController extends BaseController
 
             $unitId = (int) $this->request->getGet('unit_id');
 
-            $services = $this->scheduleService->renderUnitServices('unitId: $unitId');
+            $services = $this->scheduleService->renderUnitServices($unitId = intval($unitId));
 
             return $this->response->setJSON([
                 'services' => $services
@@ -85,7 +86,7 @@ class SchedulesController extends BaseController
             $month = (int) $this->request->getGet('month');
 
             return $this->response->setJSON([
-                'calendar' => $this->calendarService->generate('month: $month')
+                'calendar' => $this->calendarService->generate($month = intval($month))
             ]);
         } catch (\Throwable $th) {
 
@@ -113,6 +114,7 @@ class SchedulesController extends BaseController
             ]);
         } catch (\Throwable $th) {
 
+            //mensagem de erro
             log_message('error', '[ERROR] {exception}', ['exception' => $th]);
 
             $this->response->setStatusCode(500);
@@ -127,17 +129,21 @@ class SchedulesController extends BaseController
      */
     public function createSchedule()
     {
-
         try {
-
             $this->checkMethod('ajax');
 
-            $request = (array) $this->request->getJSON();
+            // Get the request data as an array
+            $requestData = (array) $this->request->getJSON();
 
+            // Retrieve start and end times from the request data
+            $startTime = $requestData['start_time'];
+            $endTime = $requestData['end_time'];
+
+            // Validate data (add validation rules for start_time and end_time if necessary)
             $rules = Factories::class(Schedule::class)->rules();
+            $validation = $this->validateData($requestData, $rules);
 
-            if (!$this->validateData($request, $rules)) {
-
+            if (!$validation) {
                 return $this->response->setStatusCode(400)->setJSON([
                     'success' => false,
                     'token'   => csrf_hash(),
@@ -145,18 +151,10 @@ class SchedulesController extends BaseController
                 ]);
             }
 
-            $result = $this->scheduleService->createSchedule('request: $request');
+            // Call the createSchedule method with start and end times
+            $result = $this->scheduleService->createSchedule($requestData, $startTime, $endTime);
 
-            // se for string, temos erro na criação
-            if (is_string($result)) {
-
-                return $this->response->setStatusCode(400)->setJSON([
-                    'success' => false,
-                    'token'   => csrf_hash(),
-                    'errors'  => ['reason' => $result]
-                ]);
-            }
-
+            // Handle the result as needed
 
             session()->setFlashdata('success', 'Agendamento criado com sucesso!');
 
@@ -164,9 +162,7 @@ class SchedulesController extends BaseController
                 'success' => true
             ]);
         } catch (\Throwable $th) {
-
             log_message('error', '[ERROR] {exception}', ['exception' => $th]);
-
             $this->response->setStatusCode(500);
         }
     }

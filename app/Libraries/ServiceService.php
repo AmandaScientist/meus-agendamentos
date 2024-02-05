@@ -25,7 +25,7 @@ class ServiceService extends MyBaseService
             return self::TEXT_FOR_NO_DATA;
         }
 
-        $this->htmlTable->setHeading('Ações', 'Nome', 'Situação', 'Criado');
+        $this->htmlTable->setHeading('Ações', 'Nome da sala', 'Situação', 'Criado');
 
         foreach ($services as $service) {
 

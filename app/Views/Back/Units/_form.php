@@ -1,39 +1,39 @@
 <div class="row">
 
     <div class="form-group col-md-4">
-        <label for="name">Nome</label>
+        <label for="name">Nome do recurso:</label>
         <input type="text" class="form-control" name="name" value="<?php echo old('name', $unit->name); ?>" id="name" aria-describedby="nameHelp" placeholder="Nome">
         <?php echo show_error_input('name'); ?>
     </div>
 
 
     <div class="form-group col-md-4">
-        <label for="phone">Telefone</label>
-        <input type="tel" class="form-control phone_with_ddd" name="phone" value="<?php echo old('phone', $unit->phone); ?>" id="phone" aria-describedby="phoneHelp" placeholder="Telefone">
+        <label for="phone">Telefone:</label>
+        <input type="tel" class="form-control phone_with_ddd" name="phone" value="<?php echo old('phone', $unit->phone); ?>" id="phone" aria-describedby="phoneHelp" placeholder="Informo a quantidade">
         <?php echo show_error_input('phone'); ?>
     </div>
 
     <div class="form-group col-md-4">
-        <label for="coordinator">Coordenador</label>
-        <input type="text" class="form-control" name="coordinator" value="<?php echo old('coordinator', $unit->coordinator); ?>" id="coordinator" aria-describedby="coordinatorHelp" placeholder="Coordenador">
+        <label for="coordinator">Usuário solicitante:</label>
+        <input type="text" class="form-control" name="coordinator" value="<?php echo old('coordinator', $unit->coordinator); ?>" id="coordinator" aria-describedby="coordinatorHelp" placeholder="Usuário">
         <?php echo show_error_input('coordinator'); ?>
     </div>
 
     <div class="form-group col-md-4">
-        <label for="starttime">Início expediente</label>
-        <input type="time" class="form-control" name="starttime" value="<?php echo old('starttime', $unit->starttime); ?>" id="starttime" aria-describedby="starttimeHelp" placeholder="Início expediente">
-        <?php echo show_error_input('starttime'); ?>
+        <label for="start_time">Horário de Início:</label>
+        <input type="time" class="form-control" name="start_time" value="<?php echo old('start_time', $unit->starttime); ?>" id="start_time" aria-describedby="start_timeHelp" placeholder="Início expediente">
+        <?php echo show_error_input('start_time'); ?>
     </div>
 
     <div class="form-group col-md-4">
-        <label for="endtime">Final expediente</label>
-        <input type="time" class="form-control" name="endtime" value="<?php echo old('endtime', $unit->endtime); ?>" id="endtime" aria-describedby="endtimeHelp" placeholder="Final expediente">
-        <?php echo show_error_input('endtime'); ?>
+        <label for="end_time">Horário Fim:</label>
+        <input type="time" class="form-control" name="end_time" value="<?php echo old('end_time', $unit->endtime); ?>" id="end_time" aria-describedby="end_timeHelp" placeholder="Final expediente">
+        <?php echo show_error_input('end_time'); ?>
     </div>
 
 
     <div class="form-group col-md-4">
-        <label for="servicetime">Tempo de cada atendimento</label>
+        <label for="servicetime">Tempo de cada Reunião:</label>
 
         <?php echo $timesInterval; ?>
         <?php echo show_error_input('servicetime'); ?>
@@ -41,16 +41,22 @@
 
 
     <div class="form-group col-md-4">
-        <label for="email">E-mail</label>
+        <label for="email">E-mail solicitante:</label>
         <input type="email" class="form-control" name="email" value="<?php echo old('email', $unit->email); ?>" id="email" aria-describedby="emailHelp" placeholder="E-mail">
         <?php echo show_error_input('email'); ?>
     </div>
 
 
     <div class="form-group col-md-4">
-        <label for="address">Endereço</label>
-        <input type="text" class="form-control" name="address" value="<?php echo old('address', $unit->address); ?>" id="address" aria-describedby="addressHelp" placeholder="Endereço">
+        <label for="address">Setor solicitante:</label>
+        <input type="text" class="form-control" name="address" value="<?php echo old('address', $unit->address); ?>" id="address" aria-describedby="addressHelp" placeholder="Setor">
         <?php echo show_error_input('address'); ?>
+    </div>
+
+    <div class="form-group col-md-4">
+        <label for="observation">Observação:</label>
+        <input type="text" class="form-control" name="observation" value="<?php echo old('observation', $unit->observation); ?>" id="observation" aria-describedby="observationHelp" placeholder="Descreva informações adicionais">
+        <?php echo show_error_input('observation'); ?>
     </div>
 
 

@@ -47,6 +47,21 @@ class Schedule
                     'exact_length' => 'Hora com formato Inválido, precisa ser hh:mm',
                 ],
             ],
+            'start_time' => [
+                'rules'     => 'required|valid_time_format',
+                'errors' => [
+                    'required' => 'Informe o horário de início',
+                    'valid_time_format' => 'Formato de horário de início inválido',
+                ],
+            ],
+
+            'end_time' => [
+                'rules'     => 'required|valid_time_format',
+                'errors'    => [
+                    'required'          => 'Informe o horário de fim',
+                    'valid_time_format' => 'Formato de horário de fim inválido',
+                ],
+            ],
         ];
     }
 }

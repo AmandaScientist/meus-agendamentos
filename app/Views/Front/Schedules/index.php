@@ -93,7 +93,7 @@
                 <!-- unidades -->
                 <div class="col-md-12 mb-4">
 
-                    <p class="lead">Escolha uma Unidade</p>
+                    <p class="lead">Escolha o Recurso de Apoio:</p>
 
                     <?php echo $units; ?>
 
@@ -102,7 +102,7 @@
                 <!-- Serviços da unidade (oculto no load da view)-->
                 <div id="mainBoxServices" class="col-md-12 d-none mb-4">
 
-                    <p class="lead">Escolha o Serviço</p>
+                    <p class="lead">Escolha uma Sala:</p>
 
                     <div id="boxServices">
 
@@ -115,7 +115,7 @@
                 <!-- Mês (oculto no load da view)-->
                 <div id="boxMonths" class="col-md-12 d-none mb-4">
 
-                    <p class="lead">Escolha o Mês</p>
+                    <p class="lead">Escolha o Mês:</p>
 
                     <?php echo $months; ?>
 
@@ -124,37 +124,34 @@
 
                 <div id="mainBoxCalendar" class="col-md-12 d-none mb-4">
 
-                    <p class="lead">Escolha o dia e o horário</p>
+                    <p class="lead">Escolha o dia:</p>
 
                     <div class="row">
 
                         <div class="col-md-6 form-group">
+                            <div id="boxCalendar"></div>
+                        </div>
 
-                            <div id="boxCalendar">
+                        <p class="lead">Escolha o horário de Início e Fim:</p>
+                        <div class="row">
+                            <div class="col-md-6 form-group">
+                                <div id="boxHours"></div>
+                                <!-- Add input fields for start and end times -->
+                                <label for="start_time" class="form-label">Horário de Início:</label>
+                                <input type="time" class="form-control" id="start_time" name="start_time" required>
 
+                                <label for="end_time" class="form-label">Horário de Fim:</label>
+                                <input type="time" class="form-control" id="end_time" name="end_time" required>
                             </div>
 
                         </div>
-
-                        <div class="col-md-6 form-group">
-
-                            <div id="boxHours">
-
-                            </div>
-
-                        </div>
-
-
-
-
                     </div>
-
                 </div>
-
 
                 <div id="boxErrors" class="mt-4 mb-3">
 
                 </div>
+
                 <div class="col-md-12 border-top pt-4">
 
                     <button id="btnTryCreate" class="btn btn-primary">Criar meu agendamento</button>
@@ -168,11 +165,11 @@
         <!-- Preview do que for sendo escolhido-->
         <div class="col-md-2 ms-auto">
 
-            <p class="lead mt-4">Unidade escolhida: <br><span id="chosenUnitText" class="text-muted small"></span></p>
-            <p class="lead">Serviço escolhido: <br><span id="chosenServiceText" class="text-muted small"></span></p>
+            <p class="lead mt-4">Recurso escolhido: <br><span id="chosenUnitText" class="text-muted small"></span></p>
+            <p class="lead">Sala escolhida: <br><span id="chosenServiceText" class="text-muted small"></span></p>
             <p class="lead">Mês escolhido: <br><span id="chosenMonthText" class="text-muted small"></span></p>
             <p class="lead">Dia escolhido: <br><span id="chosenDayText" class="text-muted small"></span></p>
-            <p class="lead">Horário escolhido: <br><span id="chosenHourText" class="text-muted small"></span></p>
+            <p class="lead">Horário escolhido: <br><span id="chosenHour" class="text-muted small"></span></p>
 
         </div>
 
@@ -182,7 +179,6 @@
 
 
 <?php echo $this->endSection(); ?>
-
 
 
 <?php echo $this->section('js'); ?>
@@ -208,10 +204,7 @@
     const chosenServiceText = document.getElementById('chosenServiceText');
     const chosenMonthText = document.getElementById('chosenMonthText');
     const chosenDayText = document.getElementById('chosenDayText');
-    const chosenHourText = document.getElementById('chosenHourText');
-
-
-
+    const chosenHourText = document.getElementById('chosenHour'); // Corrected variable name
 
     // variáveis de escopo global que utilizaremos na criação do agendamento
     let unitId = null;
@@ -246,7 +239,7 @@
 
             if (!unitId) {
 
-                alert('Erro ao determinar a Unidade escolhida');
+                alert('Erro ao determinar o Recurso escolhido');
                 return;
             }
 
@@ -254,8 +247,7 @@
             chosenServiceText.innerText = '';
             chosenMonthText.innerText = '';
             chosenDayText.innerText = '';
-            chosenHourText.innerText = '';
-
+            chosenHourText.chosenHour = '';
 
             getServices();
 
@@ -284,13 +276,12 @@
 
         if (!response.ok) {
 
-            boxErrors.innerHTML = showErrorMessage('Não foi possível recuperar os Serviços');
+            boxErrors.innerHTML = showErrorMessage('Não foi possível recuperar as Salas');
 
             throw new Error(`HTTP error! Status: ${response.status}`);
 
             return;
         }
-
 
 
         const data = await response.json();
@@ -305,7 +296,7 @@
             serviceId = elementService.value ?? null;
             let serviceName = serviceId !== '' ? elementService.options[event.target.selectedIndex].text : null;
 
-            console.log('Serviço foi escolhido? ', serviceId !== '');
+            console.log('A Sala foi escolhida? ', serviceId !== '');
 
             chosenServiceText.innerText = serviceName;
 
@@ -351,37 +342,35 @@
 
 
     btnTryCreate.addEventListener('click', (event) => {
-
-
         event.preventDefault();
-
 
         boxErrors.innerHTML = '';
 
         // unidade foi escolhida?
         if (unitId === null || unitId === '') {
-
-            boxErrors.innerHTML = showErrorMessage('Escolha a Unidade');
+            boxErrors.innerHTML = showErrorMessage('Escolha o Recurso de Apoio');
             return;
         }
 
-
         // serviço foi escolhido?
         if (serviceId === null || serviceId === '') {
-
-            boxErrors.innerHTML = showErrorMessage('Escolha o Serviço');
+            boxErrors.innerHTML = showErrorMessage('Escolha a Sala de Reunião');
             return;
         }
 
         // verificamos se os campos referente ao mês, dia e hora estão devidamente preenchidos
         const dateFieldsAreFilled = (chosenMonth !== null && chosenDay !== null && chosenHour !== null);
 
+        // verifica se start_time and end_time are filled
+        const startTime = document.getElementById('start_time').value;
+        const endTime = document.getElementById('end_time').value;
+        const timeFieldsAreFilled = (startTime !== '' && endTime !== '');
 
-        if (!dateFieldsAreFilled) {
-
-            boxErrors.innerHTML = showErrorMessage('Escolha o Mês, Dia e hora para prosseguir');
+        if (!dateFieldsAreFilled || !timeFieldsAreFilled) {
+            boxErrors.innerHTML = showErrorMessage('Preencha a Hora de Início e Hora de Fim para o agendamento');
             return;
         }
+
 
         // desabilitamos o botão
         btnTryCreate.disabled = true;
@@ -389,15 +378,14 @@
 
         // agora podemos criar o agendamento
         tryCreateSchedule();
-
     });
+
 
 
     //--------------------FUNÇÕES--------------------------//
 
     // tenta criar o agendamento
     const tryCreateSchedule = async () => {
-
         boxErrors.innerHTML = '';
 
         // o que será enviado no request
@@ -406,18 +394,11 @@
             service_id: parseInt(serviceId),
             month: chosenMonth,
             day: chosenDay,
-            hour: chosenHour
+            hour: chosenHourText.chosenHour, // Assuming chosenHourText.chosenHour contains the correct value
+            start_time: document.getElementById('start_time').value,
+            end_time: document.getElementById('end_time').value,
         };
 
-
-        body[csrfTokenName] = csrfTokenValue;
-
-
-        const response = await fetch(URL_CREATION_SCHEDULE, {
-            method: 'post',
-            headers: setHeadersRequest(),
-            body: JSON.stringify(body)
-        });
 
         if (!response.ok) {
 
@@ -466,7 +447,7 @@
 
         // limpo o preview do dia e da hora escolhidos, pois o user precisará clicar no horário novamente
         chosenDayText.innerText = '';
-        chosenHourText.innerText = '';
+        chosenHourText.chosenHour = '';
 
         let url = URL_GET_CALENDAR + '?' + setParameters({
             month: chosenMonth
@@ -510,10 +491,10 @@
 
 
                 // limpo o preview da hora
-                chosenHourText.innerText = '';
+                chosenHourText.chosenHour = '';
 
                 // mensagem
-                boxHours.innerHTML = '<span class="text-info">Carregando as horas...</span>';
+                //boxHours.innerHTML = '<span class="text-info">Carregando as horas...</span>';
 
 
                 // redefino para null para garantir
@@ -546,15 +527,11 @@
 
 
     const getHours = async () => {
-
-
         boxErrors.innerHTML = '';
 
-
-        // a unidade realmente foi escolhida?
+        // Check if the unit is chosen
         if (!unitId) {
-
-            boxErrors.innerHTML = showErrorMessage('Você precisa escolher a Unidade de atendimento');
+            boxErrors.innerHTML = showErrorMessage('Você precisa escolher uma sala de reunião');
             return;
         }
 
@@ -564,71 +541,53 @@
             day: chosenDay
         });
 
-
         const response = await fetch(url, {
             method: 'get',
             headers: setHeadersRequest(),
         });
 
         if (!response.ok) {
-
             boxErrors.innerHTML = showErrorMessage('Não foi possível recuperar os horários disponíveis');
-
             throw new Error(`HTTP error! Status: ${response.status}`);
-
             return;
         }
 
-        // recuperamos a resposta
+        // Retrieve the response
         const data = await response.json();
 
-
-        // recupero as horas
+        // Retrieve the hours
         const hours = data.hours;
 
-
         if (hours === null) {
-
-            boxHours.innerHTML = showErrorMessage(`Não há horários disponíveis para o dia ${chosenDay}`);
-
             chosenDay = null;
-
             return;
         }
 
-
-        // colocamos na div as horas
+        // Display the hours in the div
         boxHours.innerHTML = hours;
 
-
-        // agora recupero os elementos que tenham a classe '.btn-hour',
-        // ou seja, os buttons dos horários
+        // Retrieve elements with the class '.btn-hour'
         const buttonsBtnHour = document.querySelectorAll('.btn-hour');
 
-
-        // percorro eles
+        // Iterate through the elements
         buttonsBtnHour.forEach(element => {
-
             element.addEventListener('click', (event) => {
-
-
-                // removo a classe antes
+                // Remove the class from all elements
                 removeClassFromElements(buttonsBtnHour, 'btn-hour-chosen');
 
-                // e agora adiciono só no elemento clicado
+                // Add the class only to the clicked element
                 event.target.classList.add('btn-hour-chosen');
 
-                // armazenamos na variável global
+                // Store the chosen hour in the global variable
                 chosenHour = event.target.dataset.hour;
 
+                // Display the chosen hour preview
+                chosenHourText.chosenHour = chosenHour;
 
-                // preview da hora escolhida
-                chosenHourText.innerText = chosenHour;
+                // Hide or remove the predefined time options
+                hidePredefinedTimeOptions();
             });
         });
-
-
-
     };
 
 
@@ -648,7 +607,6 @@
         resetMonthDataVariables();
     }
 
-
     // Redefine as variáveis pertinentes ao mês, dia, hora
     const resetMonthDataVariables = () => {
 
@@ -659,18 +617,37 @@
         chosenHour = null;
     }
 
-
     // Redefine o calendário
     const resetBoxCalendar = () => {
-
         console.log('Redefini o calendário...');
 
         mainBoxCalendar.classList.add('d-none');
 
-
         boxCalendar.innerHTML = '';
         boxHours.innerHTML = '';
 
+        // Reset start and end time input fields
+        const startTime = document.getElementById('start_time').value;
+        const endTime = document.getElementById('end_time').value;
+    }
+
+
+    // Função para ocultar ou remover as opções de horários pré-definidos
+    function hidePredefinedTimeOptions() {
+        // Assuming predefinedTimeOptions is the container of predefined time elements
+        const predefinedTimeOptions = document.getElementById('predefinedTimeOptions');
+
+        // Check if the predefinedTimeOptions element exists
+        if (predefinedTimeOptions) {
+            // Hide or remove the predefined time options
+            predefinedTimeOptions.style.display = 'none'; // Or predefinedTimeOptions.remove();
+
+            // Display the chosen hour preview
+            chosenHourText.chosenHourText.chosenHourTchosenHchoinnerText = chosenHour;
+
+            // Hide or remove the predefined time options
+            hidePredefinedTimeOptionshidePredefinedTimehidePredefinedTimeOptions();
+        }
     }
 
 

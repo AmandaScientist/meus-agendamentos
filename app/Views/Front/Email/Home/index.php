@@ -18,7 +18,7 @@
 
 
 <div class="container pt-5 text-center">
-    <h1 class="mt-5">Veja como é fácil criar o seu agendamento</h1>
+    <h1 class="mt-5"><strong> Bem - Vindo(a)! ao Sistema de Agendamento Online - SISAGENDA</strong></h1><br>
 
 
     <div class="row mt-4">
@@ -33,7 +33,7 @@
 
                 <div class="card-body">
 
-                    <h5 class="card-title">Autentique-se</h5>
+                    <h5 class="card-title">Autentique-se:</h5>
                     <p class="card-text">Realize o login ou crie a sua conta</p>
 
                 </div>
@@ -54,8 +54,8 @@
 
                 <div class="card-body">
 
-                    <h5 class="card-title">Escolha a Unidade</h5>
-                    <p class="card-text">Onde você gostaria de ser atendido</p>
+                    <h5 class="card-title">Escolha a Sala:</h5>
+                    <p class="card-text">Onde você gostaria de realizar a reunião</p>
 
                 </div>
 
@@ -76,8 +76,8 @@
 
                 <div class="card-body">
 
-                    <h5 class="card-title">Escolha o Serviço</h5>
-                    <p class="card-text">Serviço que deseja atendimento</p>
+                    <h5 class="card-title">Escolha o Recurso de Apoio:</h5>
+                    <p class="card-text">Recurso que deseja para usar ou auxiliar na reunião</p>
 
                 </div>
 
@@ -97,7 +97,7 @@
 
                 <div class="card-body">
 
-                    <h5 class="card-title">Escolha a data</h5>
+                    <h5 class="card-title">Escolha a data:</h5>
                     <p class="card-text">Escolha a melhor data e horário</p>
 
                 </div>
@@ -118,9 +118,8 @@
 
                 <div class="card-body">
 
-                    <h5 class="card-title">Confirmação</h5>
+                    <h5 class="card-title">Confirmação:</h5>
                     <p class="card-text">Revise os dados e crie o agendamento</p>
-
                 </div>
 
 
@@ -129,6 +128,7 @@
         </div>
 
     </div>
+    <br>
 
     <div class="row mt-4">
 

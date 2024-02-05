@@ -99,7 +99,7 @@
                     return;
                 }
 
-                const result = confirm('Tem certeza do cancelamento? \n Essa ação não poderá ser desfeita.');
+                const result = confirm('Tem certeza do cancelamento?');
 
 
                 if (!result) {

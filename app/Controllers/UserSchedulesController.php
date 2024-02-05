@@ -30,7 +30,7 @@ class UserSchedulesController extends BaseController
     {
 
         $data = [
-            'title'        => 'Meus agendamentos',
+            'title'        => 'Meus agendamentos:',
         ];
 
 

@@ -22,13 +22,13 @@ class Schedule extends Entity
 
     public function situation(): string
     {
-
-
+        //em caso de finalizado
         if ($this->finished) {
 
             return "Finalizado em {$this->updatedAt()}";
         }
 
+        //em caso de cancelado
         if ($this->canceled) {
 
             return "Cancelado em {$this->updatedAt()}";
@@ -39,7 +39,7 @@ class Schedule extends Entity
         return $isBefore ? "Ocorreu em {$this->formated_chosen_date}" : "Será em {$this->formated_chosen_date}";
     }
 
-
+    //Para o caso de ser cancelado ou não
     public function canBeCanceled(): bool
     {
 

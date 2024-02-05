@@ -20,8 +20,8 @@ class UnitServiceService extends MyBaseService
 
         if (empty($services)) {
 
-            $anchor = '<div class="text-info mt-5">Não há serviços disponíveis</div>';
-            $anchor .= anchor(route_to('servicess'), 'Ver serviços', ['class' => 'btn btn-sm btn-outline-primary']);
+            $anchor = '<div class="text-info mt-5">Não há salas disponíveis</div>';
+            $anchor .= anchor(route_to('servicess'), 'Ver salas', ['class' => 'btn btn-sm btn-outline-primary']);
             return $anchor;
         }
 
@@ -43,7 +43,7 @@ class UnitServiceService extends MyBaseService
         $ul .= '</ul>';
 
 
-        // retornamo a lista de opções
+        // retornamos a lista de opções
         return $ul;
     }
 
@@ -61,7 +61,7 @@ class UnitServiceService extends MyBaseService
             return self::TEXT_FOR_NO_DATA;
         }
 
-        //de forma crescente (ASC)
+        //de forma crescente (ASC) ordem alfabetica
         $services = model(ServiceModel::class)->whereIn('id', $existingServicesIds)->orderBy('name', 'ASC')->findAll();
 
         if (empty($services)) {

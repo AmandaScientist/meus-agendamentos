@@ -34,7 +34,7 @@ class ServicesController extends BaseController
     public function index()
     {
         $data = [
-            'title'    => 'Serviços',
+            'title'    => 'Lista de salas',
             'services' => $this->serviceService->renderServices()
         ];
 
@@ -50,7 +50,7 @@ class ServicesController extends BaseController
     public function new()
     {
         $data = [
-            'title'   => 'Criar serviço',
+            'title'   => 'Criar nova sala',
             'service' => new Service(),
         ];
 
@@ -91,7 +91,7 @@ class ServicesController extends BaseController
     {
 
         $data = [
-            'title'    => 'Editar serviço',
+            'title'    => 'Editar sala',
             'service'  => $this->serviceModel->findOrFail($id),
         ];
 

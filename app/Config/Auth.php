@@ -102,7 +102,7 @@ class Auth extends ShieldAuth
 
     /**
      * --------------------------------------------------------------------
-     * Authentication Actions
+     * Authentication Actions - de dois fatores
      * --------------------------------------------------------------------
      * Specifies the class that represents an action to take after
      * the user logs in or registers a new account at the site.
@@ -116,8 +116,8 @@ class Auth extends ShieldAuth
      * @var array<string, class-string<ActionInterface>|null>
      */
     public array $actions = [
-        'register' => \CodeIgniter\Shield\Authentication\Actions\EmailActivator::class,
-        'login'    => \CodeIgniter\Shield\Authentication\Actions\Email2FA::class,
+        'register' => null,
+        'login'    => null,
     ];
 
     /**

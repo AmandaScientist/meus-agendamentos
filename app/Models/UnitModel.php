@@ -6,6 +6,7 @@ use App\Entities\Unit;
 use CodeIgniter\Exceptions\PageNotFoundException;
 use CodeIgniter\Model;
 
+//onde ficam todos os atributos
 class UnitModel extends MyBaseModel
 {
     protected $DBGroup          = 'default';

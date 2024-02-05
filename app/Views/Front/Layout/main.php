@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" class="h-100">
+<html lang="pt-br" class="h-100">
 
 <head>
     <meta charset="utf-8">
@@ -50,19 +50,19 @@
 
     <header>
         <!-- Fixed navbar -->
-        <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+        <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-primary">
             <div class="container-fluid">
-                <a class="navbar-brand" href="<?php echo route_to('home'); ?>">Meus agendamentos</a>
+                <a class="navbar-brand" href="<?php echo route_to('home'); ?>">Agendamentos Online</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarCollapse">
                     <ul class="navbar-nav me-auto mb-2 mb-md-0">
-                        <li class="nav-item">
+                        <!--li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="<?php echo route_to('home'); ?>">Home</a>
-                        </li>
+                        </li-->
                         <li class="nav-item">
-                            <a class="nav-link" href="<?php echo route_to('schedules.new'); ?>">Criar agendamentos</a>
+                            <a class="nav-link" href="<?php echo route_to('schedules.new'); ?>"><b>Criar agendamento</b></a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="<?php echo route_to('schedules.my'); ?>">Meus agendamentos</a>
@@ -77,7 +77,7 @@
                                 <?php if (auth()->user()->inGroup('superadmin')) : ?>
 
                                     <li class="nav-item">
-                                        <a class="nav-link" aria-current="page" href="<?php echo route_to('super.home'); ?>">Admin</a>
+                                        <a class="nav-link" aria-current="page" href="<?php echo route_to('super.home'); ?>">Administração</a>
                                     </li>
 
                                 <?php endif; ?>
@@ -114,7 +114,9 @@
 
     <footer class="footer mt-auto py-3 bg-light">
         <div class="container">
-            <span class="text-muted">Place sticky footer content here.</span>
+            <div style="text-align:center">
+                <span class="text-muted">Copyright © Agendamento Online - COTIC / SRH 2024</span>
+            </div>
         </div>
     </footer>
 
